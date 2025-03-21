@@ -63,8 +63,8 @@ def commit_changes():
 
 @click.command()
 @click.option('--analyze', is_flag=True, help="Analyze Git changes and suggest a commit message")
-@click.option('--commit', is_flag=True, help="Commit with AI-generated message")
-@click.option('--push', is_flag=True, help="Push committed changes to remote")
+@click.option('--commit', is_flag=True, help="Commits and pushs with AI-generated message")
+# @click.option('--push', is_flag=True, help="Push committed changes to remote")
 def cli(analyze, commit, push):
     """CLI tool for AI-powered Git commit messages using Google Gemini."""
     if analyze:

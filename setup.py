@@ -1,5 +1,8 @@
 from setuptools import setup, find_packages
 
+with open("README.md", "r", encoding="utf-8") as f:
+    long_description = f.read()
+
 setup(
     name="autocommit-cli",
     version="0.1",
@@ -17,7 +20,7 @@ setup(
     },
     author="Pranjal Kishor",
     description="A CLI tool for AI-powered Git commit messages using Google Gemini API.",
-    long_description=open("README.md").read(),
+    long_description=long_description,
     long_description_content_type="text/markdown",
     url="https://github.com/Pranjal-88/Autocommit-CLI",
     classifiers=[

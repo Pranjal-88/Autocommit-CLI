@@ -1,0 +1,10 @@
+README.md
+setup.py
+autocommit/__init__.py
+autocommit/cli.py
+autocommit_cli.egg-info/PKG-INFO
+autocommit_cli.egg-info/SOURCES.txt
+autocommit_cli.egg-info/dependency_links.txt
+autocommit_cli.egg-info/entry_points.txt
+autocommit_cli.egg-info/requires.txt
+autocommit_cli.egg-info/top_level.txt

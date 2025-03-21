@@ -1,0 +1,18 @@
+# Virtual environment
+venv/
+.env
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+
+# Build artifacts
+dist/
+build/
+*.egg-info/
+
+# IDE & Editor settings
+.vscode/
+.idea/
+*.iml
