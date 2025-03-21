@@ -19,7 +19,7 @@ pip install autocommit-cli
 ```
 
 ### **2️⃣ Set Up Google Gemini API Key**
-AutoCommit-CLI requires a Google Gemini API key. Get yours from [Google AI Studio](https://aistudio.google.com/) and store it in a `.env` file in your project:
+AutoCommit-CLI requires a Google Gemini API key. Get your key from [Google AI Studio](https://aistudio.google.com/) and store it in a `.env` file in your project:
 ```ini
 GEMINI_API_KEY="your_api_key_here"
 ```
