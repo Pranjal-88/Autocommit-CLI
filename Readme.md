@@ -47,15 +47,6 @@ autocommit --commit
 ✅ Committed Successfully: fix: updated error handling in user registration
 ```
 
-### **3️⃣ Auto-Commit & Push**
-```bash
-autocommit --commit --push
-```
-📌 **Example Output:**
-```
-✅ Committed Successfully: refactor: improved API response handling
-🚀 Pushed changes to remote repository!
-```
 
 ---
 
