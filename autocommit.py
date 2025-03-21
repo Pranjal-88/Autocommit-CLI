@@ -1,5 +1,4 @@
 import os
-import subprocess
 import google.generativeai as genai
 import click
 from git import Repo
@@ -29,36 +28,61 @@ def get_git_diff():
 def generate_commit_message(diff_text):
     """Uses Google Gemini API to generate a commit message automatically."""
     try:
+        print("🔄 Generating commit message with Gemini...")
         model = genai.GenerativeModel("gemini-2.0-flash")
+
+        # Limit input size to 1000 characters
+        diff_text = diff_text[:1000]
+
         response = model.generate_content(
             f"Write a clear and concise Git commit message for the following changes:\n{diff_text}"
         )
+        print("✅ Commit message generated!")
         return response.text.strip()
     except Exception as e:
         print(f"❌ Gemini API Error: {e}")
         exit(1)
 
 def commit_changes():
-    """Commits staged changes with a Gemini-generated commit message."""
+    """Commits staged changes with an AI-generated commit message."""
     diff_text = get_git_diff()
     commit_message = generate_commit_message(diff_text)
     
     repo = Repo(".")
     repo.git.commit('-m', commit_message)
-    print(f"✅ Committed Successfully: {commit_message}")
+    print(f"✅ Changes committed: {commit_message}")
+
+    return commit_message
+
+def push_changes():
+    """Pushes committed changes to the remote repository."""
+    repo = Repo(".")
+    origin = repo.remotes.origin
+
+    try:
+        print("🚀 Pushing changes to remote repository...")
+        origin.push()
+        print("✅ Changes pushed successfully!")
+    except Exception as e:
+        print(f"❌ Error pushing to remote: {e}")
+        exit(1)
 
 @click.command()
 @click.option('--analyze', is_flag=True, help="Analyze Git changes and suggest a commit message")
 @click.option('--commit', is_flag=True, help="Commit with AI-generated message")
-def cli(analyze, commit):
+@click.option('--push', is_flag=True, help="Push committed changes to remote")
+def cli(analyze, commit, push):
     """CLI tool for AI-powered Git commit messages using Google Gemini."""
     if analyze:
         diff_text = get_git_diff()
         commit_message = generate_commit_message(diff_text)
-        print(f"💡 Suggested Commit Message:\n\n{commit_message}")
-    
+        print(f"\n💡 Suggested Commit Message:\n\n{commit_message}\n")
+
     if commit:
-        commit_changes()
+        commit_message = commit_changes()
+
+    if push:
+        push_changes()
 
 if __name__ == '__main__':
     cli()
