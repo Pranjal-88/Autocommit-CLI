@@ -28,16 +28,14 @@ def get_git_diff():
 def generate_commit_message(diff_text):
     """Uses Google Gemini API to generate a commit message automatically."""
     try:
-        print("🔄 Generating commit message with Gemini...")
         model = genai.GenerativeModel("gemini-2.0-flash")
 
         # Limit input size to 1000 characters
         diff_text = diff_text[:1000]
 
         response = model.generate_content(
-            f"Write a clear and concise Git commit message for the following changes:\n{diff_text}"
+            f"Write a clear and concise Git commit message for the following changes and no extra text:\n{diff_text}"
         )
-        print("✅ Commit message generated!")
         return response.text.strip()
     except Exception as e:
         print(f"❌ Gemini API Error: {e}")
@@ -51,21 +49,17 @@ def commit_changes():
     repo = Repo(".")
     repo.git.commit('-m', commit_message)
     print(f"✅ Changes committed: {commit_message}")
-
-    return commit_message
-
-def push_changes():
-    """Pushes committed changes to the remote repository."""
-    repo = Repo(".")
-    origin = repo.remotes.origin
-
     try:
         print("🚀 Pushing changes to remote repository...")
+        origin = repo.remotes.origin
         origin.push()
         print("✅ Changes pushed successfully!")
     except Exception as e:
         print(f"❌ Error pushing to remote: {e}")
         exit(1)
+
+    return commit_message
+    
 
 @click.command()
 @click.option('--analyze', is_flag=True, help="Analyze Git changes and suggest a commit message")
@@ -80,9 +74,6 @@ def cli(analyze, commit, push):
 
     if commit:
         commit_message = commit_changes()
-
-    if push:
-        push_changes()
 
 if __name__ == '__main__':
     cli()
