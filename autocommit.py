@@ -27,7 +27,7 @@ def get_git_diff():
     return diff
 
 def generate_commit_message(diff_text):
-    """Uses Google Gemini API to generate a commit message."""
+    """Uses Google Gemini API to generate a commit message automatically."""
     try:
         model = genai.GenerativeModel("gemini-2.0-flash")
         response = model.generate_content(
