@@ -19,6 +19,7 @@ setup(
         ]
     },
     author="Pranjal Kishor",
+    license="MIT",
     description="A CLI tool for AI-powered Git commit messages using Google Gemini API.",
     long_description=long_description,
     long_description_content_type="text/markdown",
