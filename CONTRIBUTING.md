@@ -1,6 +1,7 @@
 Here is a detailed `CONTRIBUTING.md` file to guide contributors on how to contribute to your **Autocommit-CLI** project.  
 
 ---
+<!--  This comment is for testing auto-commit CLI -->
 
 ## **CONTRIBUTING.md**
 ```md
