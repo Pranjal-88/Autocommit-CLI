@@ -63,7 +63,7 @@ Want to improve AutoCommit-CLI? Follow these steps:
 
 ### **Clone the repository:**
 ```bash
-git clone https://github.com/yourusername/Autocommit-CLI.git
+git clone https://github.com/Pranjal-88/Autocommit-CLI.git
 cd Autocommit-CLI
 ```
 
